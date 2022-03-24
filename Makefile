@@ -60,6 +60,9 @@ app-migrate:
 app-migrate-fresh:
 	docker compose exec app php artisan migrate:fresh
 
+app-migrate-fresh-seed:
+	docker compose exec app php artisan migrate:fresh --seed
+
 app-link-storage:
 	docker compose exec app php artisan storage:link
 
