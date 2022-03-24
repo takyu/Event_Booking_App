@@ -1,0 +1,60 @@
+version: '3.8'
+
+# To store data of mysql paramanently.
+volumes:
+  db-volume:
+  node_modules-volume:
+  vendor-volume:
+
+services:
+  # php
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./src/:/var/www/html
+      - node_modules-volume:/var/www/html/node_modules
+      - vendor-volume:/var/www/html/vendor
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_NAME}
+      - DB_USERNAME=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+
+  # Nginx
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    ports:
+      - ${WEB_PORT}:80
+    depends_on:
+      - app
+    volumes:
+      - ./src/:/var/www/html
+      - node_modules-volume:/var/www/html/node_modules
+      - vendor-volume:/var/www/html/vendor
+
+  # mysql
+  db:
+    container_name: db
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
+    ports:
+      - ${DB_PORT}:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - db-volume:/var/lib/mysql
