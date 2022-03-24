@@ -75,6 +75,9 @@ app-publish-jetstream-route:
 app-publish-jetstream-view:
 	docker compose exec app php artisan vendor:publish --tag=jetstream-views
 
+app-custom-error-page:
+	docker compose exec app php artisan vendor:publish --tag=laravel-errors
+
 app-update-env:
 	docker compose exec app php artisan cache:clear
 	docker compose exec app php artisan config:clear
