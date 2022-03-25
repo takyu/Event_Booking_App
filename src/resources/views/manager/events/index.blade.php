@@ -15,9 +15,10 @@
                 {{ session('status') }}
               </div>
             @endif
-            <div class="mb-4">
-              <button onclick="location.href='{{ route('events.create') }}'"
-                class="ml-auto flex rounded border-0 bg-green-500 py-2 px-6 text-white hover:bg-green-600 focus:outline-none">新規登録</button>
+            <div class="mb-6 text-center">
+              <x-jet-button type="button" onclick="location.href='{{ route('events.create') }}'">
+                イベント新規登録
+              </x-jet-button>
             </div>
             <div class="mb-20 flex w-full flex-col text-center">
               <div class="mx-auto w-full overflow-auto">
@@ -45,7 +46,14 @@
                   <tbody>
                     @foreach ($events as $event)
                       <tr>
-                        <td class="px-4 py-3">{{ $event->name }}</td>
+                        <td class="px-4 py-3 text-blue-500 hover:underline">
+                          <a
+                            href="{{ route('events.show', [
+                                'event' => $event->id,
+                            ]) }}">
+                            {{ $event->name }}
+                          </a>
+                        </td>
                         <td class="px-4 py-3">{{ $event->start_date }}</td>
                         <td class="px-4 py-3">{{ $event->end_date }}</td>
                         <td class="px-4 py-3">まだ</td>
