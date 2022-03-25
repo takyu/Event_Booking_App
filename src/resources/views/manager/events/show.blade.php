@@ -66,12 +66,13 @@
               </div>
 
 
-              <div class="mt-8 text-center md:text-left">
-                <x-jet-button>
-                  編集する
-                </x-jet-button>
-              </div>
-
+              @if ($eventDate >= \Carbon\Carbon::today()->format('Y年m月d日'))
+                <div class="mt-8 text-center md:text-left">
+                  <x-jet-button>
+                    編集する
+                  </x-jet-button>
+                </div>
+              @endif
             </div>
           </form>
         </div>

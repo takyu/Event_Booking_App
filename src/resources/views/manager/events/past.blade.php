@@ -17,9 +17,9 @@
             @endif
             <div class="mb-8 justify-between text-center md:flex">
               <div class="mb-6 md:mb-0">
-                <button onclick="location.href='{{ route('events.past') }}'"
-                  class="inline-flex items-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-lg font-semibold uppercase tracking-widest text-white transition hover:bg-indigo-600 focus:border-indigo-900 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-indigo-900 disabled:opacity-25">
-                  過去のイベント一覧 </button>
+                <button onclick="location.href='{{ route('events.index') }}'"
+                  class="inline-flex items-center rounded-md border border-transparent bg-blue-500 px-4 py-2 text-lg font-semibold uppercase tracking-widest text-white transition hover:bg-blue-600 focus:border-blue-900 focus:outline-none focus:ring focus:ring-blue-300 active:bg-blue-900 disabled:opacity-25">
+                  現在のイベント一覧 </button>
               </div>
               <div class="mb-6 md:mb-0">
                 <button onclick="location.href='{{ route('events.create') }}'"
