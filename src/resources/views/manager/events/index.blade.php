@@ -10,6 +10,15 @@
       <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
         <section class="body-font text-gray-600">
           <div class="container mx-auto px-4 py-8">
+            @if (session('status'))
+              <div class="m-10 mx-auto w-1/2 bg-blue-300 p-2 text-white">
+                {{ session('status') }}
+              </div>
+            @endif
+            <div class="mb-4">
+              <button onclick="location.href='{{ route('events.create') }}'"
+                class="ml-auto flex rounded border-0 bg-green-500 py-2 px-6 text-white hover:bg-green-600 focus:outline-none">新規登録</button>
+            </div>
             <div class="mb-20 flex w-full flex-col text-center">
               <div class="mx-auto w-full overflow-auto">
                 <table class="whitespace-no-wrap mb-4 w-full table-auto text-left">
@@ -51,14 +60,7 @@
                 </div>
               </div>
               <div class="mx-auto mt-4 flex w-full pl-4 lg:w-2/3">
-                <a class="inline-flex items-center text-green-500 md:mb-2 lg:mb-0">Learn More
-                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    class="ml-2 h-4 w-4" viewBox="0 0 24 24">
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-                <button
-                  class="ml-auto flex rounded border-0 bg-green-500 py-2 px-6 text-white hover:bg-green-600 focus:outline-none">Button</button>
+
               </div>
             </div>
         </section>

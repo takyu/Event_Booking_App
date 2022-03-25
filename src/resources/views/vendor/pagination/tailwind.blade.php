@@ -29,17 +29,16 @@
     <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
       <div>
         <p class="text-sm leading-5 text-gray-700">
-          表示
+          <span class="font-medium">{{ $paginator->total() }}</span>
+          件中
           @if ($paginator->firstItem())
             <span class="font-medium">{{ $paginator->firstItem() }}</span>
-            {!! __('to') !!}
+            件〜
             <span class="font-medium">{{ $paginator->lastItem() }}</span>
+            件
           @else
             {{ $paginator->count() }}
           @endif
-          {!! __('of') !!}
-          <span class="font-medium">{{ $paginator->total() }}</span>
-          {!! __('results') !!}
         </p>
       </div>
 
