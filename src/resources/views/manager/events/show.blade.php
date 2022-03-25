@@ -5,7 +5,7 @@
     </h2>
   </x-slot>
 
-  <div class="py-8">
+  <div class="pt-8">
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
 
@@ -27,7 +27,7 @@
               {{ $event->name }}
             </div>
 
-            <div class="mt-4 text-center md:text-left">
+            <div class="mt-4 px-4 text-center md:px-0 md:text-left">
               <x-jet-label for="information" value="イベント情報" />
 
               {{-- how to write to recognize line breaks --}}
@@ -35,37 +35,39 @@
             </div>
 
             <div class="justify-between md:flex">
-              <div class="mt-4 text-center md:text-left">
+              <div class="mt-4 text-center">
                 <x-jet-label for="event_date" value="イベントの日付" />
                 {{ $eventDate }}
               </div>
 
-              <div class="mt-4 text-center md:text-left">
+              <div class="mt-4 text-center">
                 <x-jet-label for="start_time" value="開始時刻" />
                 {{ $event->startTime }}
               </div>
 
-              <div class="mt-4 text-center md:text-left">
+              <div class="mt-4 text-center">
                 <x-jet-label for="end_time" value="終了時刻" />
                 {{ $event->endTime }}
               </div>
             </div>
 
             <div class="items-end justify-between md:flex">
-              <div class="mt-4 text-center md:text-left">
-                <x-jet-label for="max_people" value="定員数" />
-                {{ $event->max_people }}
+              <div class="mt-4 text-center">
+                <x-jet-label for="max_people" value="予約人数 / 定員数" />
+                {{ $numberOfReservedPeople }} / {{ $event->max_people }}
               </div>
 
               <div class="mt-6 flex items-center justify-around space-x-8 md:mt-0">
                 @if ($event->is_visible)
-                  表示中
+                  <div class="text-md block text-center font-medium text-blue-700">
+                    表示中
+                  </div>
                 @else
-                  非表示中
+                  <div class="text-md block text-center font-medium text-red-700">
+                    非表示中
+                  </div>
                 @endif
               </div>
-
-
               @if ($eventDate >= \Carbon\Carbon::today()->format('Y年m月d日'))
                 <div class="mt-8 text-center md:text-left">
                   <x-jet-button>
@@ -75,6 +77,44 @@
               @endif
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-8">
+    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
+        <div class="mx-auto max-w-2xl py-8">
+          @if (!$users->isEmpty())
+            <div class="mb-5 block text-center text-lg font-medium text-gray-700">
+              予約情報
+            </div>
+            <table class="whitespace-no-wrap mb-4 w-full table-auto text-left">
+              <thead>
+                <tr>
+                  <th class="title-font bg-gray-100 px-4 py-3 text-sm font-medium tracking-wider text-gray-900">
+                    予約者名</th>
+                  <th class="title-font bg-gray-100 px-4 py-3 text-sm font-medium tracking-wider text-gray-900">
+                    予約人数
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($reservations as $reservation)
+                  @if (is_null($reservation['canceled_date']))
+                    <tr>
+                      <td class="px-4 py-3">
+                        {{ $reservation['name'] }}
+                      </td>
+                      <td class="px-4 py-3">
+                        {{ $reservation['number_of_people'] }}
+                      </td>
+                    </tr>
+                  @endif
+                @endforeach
+              </tbody>
+            </table>
+          @endif
         </div>
       </div>
     </div>

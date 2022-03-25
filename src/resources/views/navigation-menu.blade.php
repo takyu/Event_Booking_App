@@ -17,7 +17,10 @@
           </x-jet-nav-link>
           @can('manager-higher')
             <x-jet-nav-link href="{{ route('events.index') }}" :active="request()->routeIs('events.index')">
-              イベント管理
+              現在のイベント一覧
+            </x-jet-nav-link>
+            <x-jet-nav-link href="{{ route('events.past') }}" :active="request()->routeIs('events.past')">
+              過去のイベント一覧
             </x-jet-nav-link>
           @endcan
         </div>

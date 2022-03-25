@@ -17,6 +17,12 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 use Carbon\Carbon;
 
+/**
+ * Models
+ */
+
+use App\Models\User;
+
 class Event extends Model
 {
 	use HasFactory;
@@ -83,5 +89,14 @@ class Event extends Model
 		return new Attribute(
 			get: fn () => Carbon::parse($this->end_date)->format('H時i分')
 		);
+	}
+
+	/**
+	 * relation
+	 */
+	public function users()
+	{
+		return $this->belongsToMany(User::class, 'reservations')
+			->withPivot('id', 'number_of_people', 'canceled_date');
 	}
 }
