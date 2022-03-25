@@ -37,13 +37,27 @@ class Event extends Model
 
 	/**
 	 * Get the event's date.
+	 * To use show controller.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Casts\Attribute
 	 */
-	protected function eventDate(): Attribute
+	protected function showEventDate(): Attribute
 	{
 		return new Attribute(
 			get: fn () => Carbon::parse($this->start_date)->format('Y年m月d日')
+		);
+	}
+
+	/**
+	 * Get the event's date.
+	 * To use edit controller.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Casts\Attribute
+	 */
+	protected function editEventDate(): Attribute
+	{
+		return new Attribute(
+			get: fn () => Carbon::parse($this->start_date)->format('Y-m-d')
 		);
 	}
 
