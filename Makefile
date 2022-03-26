@@ -36,6 +36,10 @@ app-i-npm-for-container:
 app-i-npm-for-host:
 	docker compose run --rm -v $$(pwd)/src:/code -w /code app npm install
 
+app-i-both-for-container:
+	@make app-i-composer-for-container
+	@make app-i-npm-for-container
+
 app-i-laravel-debugger:
 	docker compose exec app composer require barryvdh/laravel-debugbar
 	@make i-composer-for-host
@@ -54,11 +58,18 @@ app-npm-dev:
 app-npm-watch:
 	docker compose exec app npm run watch
 
+app-npm-both-dev-watch:
+	@make app-npm-dev
+	@make app-npm-watch
+
 app-migrate:
 	docker compose exec app php artisan migrate
 
 app-migrate-fresh:
 	docker compose exec app php artisan migrate:fresh
+
+app-migrate-fresh-seed:
+	docker compose exec app php artisan migrate:fresh --seed
 
 app-link-storage:
 	docker compose exec app php artisan storage:link
@@ -71,6 +82,12 @@ app-publish-jetstream-route:
 
 app-publish-jetstream-view:
 	docker compose exec app php artisan vendor:publish --tag=jetstream-views
+
+app-publish-error-page:
+	docker compose exec app php artisan vendor:publish --tag=laravel-errors
+
+app-publish-pagination-page:
+	docker compose exec app php artisan vendor:publish --tag=laravel-pagination
 
 app-update-env:
 	docker compose exec app php artisan cache:clear
