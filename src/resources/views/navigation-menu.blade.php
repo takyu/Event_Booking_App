@@ -22,6 +22,9 @@
             <x-jet-nav-link href="{{ route('events.past') }}" :active="request()->routeIs('events.past')">
               過去のイベント一覧
             </x-jet-nav-link>
+            <x-jet-nav-link href="{{ route('events.deleted') }}" :active="request()->routeIs('events.deleted')">
+              削除済みイベント一覧
+            </x-jet-nav-link>
           @endcan
         </div>
       </div>
@@ -162,7 +165,13 @@
       </x-jet-responsive-nav-link>
       @can('manager-higher')
         <x-jet-responsive-nav-link href="{{ route('events.index') }}" :active="request()->routeIs('events.index')">
-          イベント管理
+          現在のイベント一覧
+        </x-jet-responsive-nav-link>
+        <x-jet-responsive-nav-link href="{{ route('events.past') }}" :active="request()->routeIs('events.past')">
+          過去のイベント一覧
+        </x-jet-responsive-nav-link>
+        <x-jet-responsive-nav-link href="{{ route('events.deleted') }}" :active="request()->routeIs('events.deleted')">
+          削除済みイベント一覧
         </x-jet-responsive-nav-link>
       @endcan
     </div>

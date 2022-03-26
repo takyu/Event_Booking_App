@@ -71,7 +71,7 @@
               @if ($eventDate >= \Carbon\Carbon::today()->format('Y年m月d日'))
                 <div class="mt-8 text-center md:text-left">
                   <x-jet-button>
-                    編集する
+                    編集
                   </x-jet-button>
                 </div>
               @endif
@@ -114,10 +114,41 @@
                 @endforeach
               </tbody>
             </table>
+          @else
+            <div class="text-center">
+              予約者情報はありません。
+            </div>
           @endif
         </div>
       </div>
     </div>
   </div>
+  <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
+      <div class="mx-auto max-w-2xl py-8">
+        <div class="text-center">
+          <form method="POST" id="delete_{{ $event->id }}"
+            action="{{ route('events.destroy', [
+                'event' => $event->id,
+            ]) }}">
+            @csrf
+            @method('delete')
+            <a href="#" data-id="{{ $event->id }}" onclick="deletePost(this)"
+              class="inline-flex items-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-white transition hover:bg-red-600 focus:border-red-900 focus:outline-none focus:ring focus:ring-red-300 active:bg-red-900 disabled:opacity-25">
+              削除する
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="{{ mix('js/flatpickr.js') }}"></script>
+  <script>
+    function deletePost(e) {
+      'use strict';
+      if (confirm('本当に削除してもいいですか?')) {
+        document.querySelector('#delete_' + e.dataset.id).submit();
+      }
+    }
+  </script>
 </x-app-layout>

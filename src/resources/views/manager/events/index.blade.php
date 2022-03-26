@@ -18,17 +18,17 @@
             <div class="mb-8 justify-between text-center md:flex">
               <div class="mb-6 md:mb-0">
                 <button onclick="location.href='{{ route('events.past') }}'"
-                  class="inline-flex items-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-lg font-semibold uppercase tracking-widest text-white transition hover:bg-indigo-600 focus:border-indigo-900 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-indigo-900 disabled:opacity-25">
+                  class="inline-flex items-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-white transition hover:bg-indigo-600 focus:border-indigo-900 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-indigo-900 disabled:opacity-25">
                   過去のイベント一覧 </button>
               </div>
               <div class="mb-6 md:mb-0">
                 <button onclick="location.href='{{ route('events.create') }}'"
-                  class="inline-flex items-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-lg font-semibold uppercase tracking-widest text-white transition hover:bg-green-600 focus:border-green-900 focus:outline-none focus:ring focus:ring-green-300 active:bg-green-900 disabled:opacity-25">
+                  class="inline-flex items-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-white transition hover:bg-green-600 focus:border-green-900 focus:outline-none focus:ring focus:ring-green-300 active:bg-green-900 disabled:opacity-25">
                   イベント新規登録
                 </button>
               </div>
             </div>
-            <div class="mb-20 flex w-full flex-col text-center">
+            <div class="mb-10 flex w-full flex-col text-center">
               <div class="mx-auto w-full overflow-auto">
                 <table class="whitespace-no-wrap mb-4 w-full table-auto text-left">
                   <thead>
@@ -47,7 +47,7 @@
                         定員
                       </th>
                       <th class="title-font bg-gray-100 px-4 py-3 text-sm font-medium tracking-wider text-gray-900">
-                        表示・非表示
+                        表示
                       </th>
                     </tr>
                   </thead>
@@ -71,8 +71,14 @@
                             {{ $event->number_of_people }}
                           @endif
                         </td>
-                        <td class="px-4 py-3">{{ $event->max_people }}</td>
-                        <td class="px-4 py-3">{{ $event->is_visible }}</td>
+                        <td class="text-centor px-4 py-3">{{ $event->max_people }}</td>
+                        <td class="px-4 py-3">
+                          @if ($event->is_visible)
+                            表示
+                          @else
+                            非表示
+                          @endif
+                        </td>
                       </tr>
                     @endforeach
                   </tbody>

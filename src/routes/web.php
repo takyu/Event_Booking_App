@@ -28,8 +28,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::prefix('manager')
 	->middleware('can:manager-higher')
 	->group(function () {
+
 		Route::get('events/past', [EventController::class, 'past'])
 			->name('events.past');
+		Route::get('events/deleted', [EventController::class, 'deleted'])
+			->name('events.deleted');
+		Route::post('events/deleted/completeDestroy/{event}', [EventController::class, 'completeDestroy'])
+			->name('events.completeDestroy');
+		Route::post('events/deleted/restore/{event}', [EventController::class, 'restore'])
+			->name('events.restore');
+
 		Route::resource('events', EventController::class);
 	});
 

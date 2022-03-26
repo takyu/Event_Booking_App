@@ -52,6 +52,7 @@ class EventController extends Controller
 				fn ($join) => $join->on('events.id', '=', 'reserved_people.event_id')
 			)
 			->whereDate('start_date', '>=', Carbon::today())
+			->whereNull('deleted_at')
 			->orderBy('start_date', 'asc')
 			->paginate(10);
 
@@ -244,7 +245,10 @@ class EventController extends Controller
 	 */
 	public function destroy(Event $event)
 	{
-		//
+		Event::findOrFail($event->id)->delete();
+
+		session()->flash('status', '削除しました。');
+		return to_route('events.index');
 	}
 
 	public function past()
@@ -261,9 +265,35 @@ class EventController extends Controller
 				fn ($join) => $join->on('events.id', '=', 'reserved_people.event_id')
 			)
 			->whereDate('start_date', '<', Carbon::today())
+			->whereNull('deleted_at')
 			->orderBy('start_date', 'desc')
 			->paginate(10);
 
 		return view('manager.events.past', compact('events'));
+	}
+
+	public function deleted()
+	{
+		$deletedEvents = Event::onlyTrashed()->paginate(10);
+
+		return view('manager.events.deleted', compact('deletedEvents'));
+	}
+
+	public function completeDestroy($id)
+	{
+		Event::onlyTrashed()
+			->findOrFail($id)
+			->forceDelete();
+
+		return to_route('events.deleted');
+	}
+
+	public function restore($id)
+	{
+		Event::onlyTrashed()
+			->findOrFail($id)
+			->restore();
+
+		return to_route('events.deleted');
 	}
 }

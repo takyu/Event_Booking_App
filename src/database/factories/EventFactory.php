@@ -16,7 +16,7 @@ class EventFactory extends Factory
 	 */
 	public function definition()
 	{
-		$dummyDate = $this->faker->dateTimeThisMonth;
+		$dummyDate = $this->faker->dateTimeThisMonth->modify('15day');
 
 		return [
 			'name' => $this->faker->name,

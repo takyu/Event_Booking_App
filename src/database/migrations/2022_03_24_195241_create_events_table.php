@@ -22,6 +22,7 @@ return new class extends Migration
 			$table->datetime('end_date');
 			$table->boolean('is_visible');
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
