@@ -194,6 +194,7 @@ return [
 
 	'aliases' => Facade::defaultAliases()->merge([
 		// ...
+		'EventConst' => App\Constants\EventConst::class
 	])->toArray(),
 
 ];

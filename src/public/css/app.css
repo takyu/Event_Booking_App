@@ -1189,6 +1189,9 @@ select {
 .w-1\/2 {
   width: 50%;
 }
+.w-32 {
+  width: 8rem;
+}
 .w-40 {
   width: 10rem;
 }
@@ -1327,6 +1330,9 @@ select {
 .overflow-hidden {
   overflow: hidden;
 }
+.overflow-x-auto {
+  overflow-x: auto;
+}
 .overflow-y-auto {
   overflow-y: auto;
 }
@@ -1336,6 +1342,9 @@ select {
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.whitespace-nowrap {
   white-space: nowrap;
 }
 .rounded-md {
@@ -1481,6 +1490,10 @@ select {
 .bg-green-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+}
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
@@ -2557,6 +2570,15 @@ span.flatpickr-weekday {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
+}
+.placeholder\:whitespace-nowrap::-moz-placeholder {
+  white-space: nowrap;
+}
+.placeholder\:whitespace-nowrap:-ms-input-placeholder {
+  white-space: nowrap;
+}
+.placeholder\:whitespace-nowrap::placeholder {
+  white-space: nowrap;
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
