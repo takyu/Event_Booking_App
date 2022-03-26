@@ -19,7 +19,7 @@ use App\Http\Controllers\EventController;
 |
 */
 
-Route::get('/', fn () => view('welcome'));
+Route::get('/', fn () => view('calender'));
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 	return view('dashboard');
