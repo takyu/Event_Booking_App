@@ -37,7 +37,7 @@
             <div class="justify-between md:flex">
               <div class="mt-4 text-center">
                 <x-jet-label for="event_date" value="イベントの日付" />
-                {{ $eventDate }}
+                {{ $event->showEventDate }}
               </div>
 
               <div class="mt-4 text-center">

@@ -13,7 +13,7 @@
         <!-- Navigation Links -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-            {{ __('Dashboard') }}
+            イベントカレンダー
           </x-jet-nav-link>
           @can('manager-higher')
             <x-jet-nav-link href="{{ route('events.index') }}" :active="request()->routeIs('events.index')">
@@ -161,7 +161,7 @@
   <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
     <div class="space-y-1 pt-2 pb-3">
       <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-        {{ __('Dashboard') }}
+        イベントカレンダー
       </x-jet-responsive-nav-link>
       @can('manager-higher')
         <x-jet-responsive-nav-link href="{{ route('events.index') }}" :active="request()->routeIs('events.index')">

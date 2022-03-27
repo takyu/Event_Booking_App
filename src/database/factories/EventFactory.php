@@ -21,7 +21,7 @@ class EventFactory extends Factory
 		$mKey = array_rand($minutes);
 		$addHour = $this->faker->numberBetween(1, 3);
 
-		$dummyDate = $this->faker->dateTimeThisMonth;
+		$dummyDate = $this->faker->dateTimeThisYear;
 		$startDate = $dummyDate->setTime($availableHour, $minutes[$mKey]);
 		$tmp = clone $startDate;
 		$endDate = $tmp->modify('+' . $addHour . 'hour');
