@@ -998,6 +998,9 @@ select {
 .col-span-6 {
   grid-column: span 6 / span 6;
 }
+.col-auto {
+  grid-column: auto;
+}
 .m-10 {
   margin: 2.5rem;
 }
@@ -1330,8 +1333,8 @@ select {
 .overflow-hidden {
   overflow: hidden;
 }
-.overflow-x-auto {
-  overflow-x: auto;
+.overflow-scroll {
+  overflow: scroll;
 }
 .overflow-y-auto {
   overflow-y: auto;
@@ -1747,6 +1750,10 @@ select {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
 }
+.text-rose-400 {
+  --tw-text-opacity: 1;
+  color: rgb(251 113 133 / var(--tw-text-opacity));
+}
 .text-gray-200 {
   --tw-text-opacity: 1;
   color: rgb(229 231 235 / var(--tw-text-opacity));
@@ -1754,6 +1761,10 @@ select {
 .text-gray-300 {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+.text-red-300 {
+  --tw-text-opacity: 1;
+  color: rgb(252 165 165 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
@@ -2571,15 +2582,6 @@ span.flatpickr-weekday {
     transform: translate3d(0, 0, 0);
   }
 }
-.placeholder\:whitespace-nowrap::-moz-placeholder {
-  white-space: nowrap;
-}
-.placeholder\:whitespace-nowrap:-ms-input-placeholder {
-  white-space: nowrap;
-}
-.placeholder\:whitespace-nowrap::placeholder {
-  white-space: nowrap;
-}
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -3076,6 +3078,10 @@ span.flatpickr-weekday {
 
   .md\:mb-0 {
     margin-bottom: 0px;
+  }
+
+  .md\:mb-2 {
+    margin-bottom: 0.5rem;
   }
 
   .md\:flex {

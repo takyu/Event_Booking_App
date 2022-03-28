@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
  */
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\MyPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +23,10 @@ use App\Http\Controllers\EventController;
 
 Route::get('/', fn () => view('calender'));
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-	return view('dashboard');
-})->name('dashboard');
+// for API socket
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+// 	return view('dashboard');
+// })->name('dashboard');
 
 Route::prefix('manager')
 	->middleware('can:manager-higher')
@@ -33,9 +36,9 @@ Route::prefix('manager')
 			->name('events.past');
 		Route::get('events/deleted', [EventController::class, 'deleted'])
 			->name('events.deleted');
-		Route::post('events/deleted/completeDestroy/{event}', [EventController::class, 'completeDestroy'])
+		Route::post('events/deleted/{event}', [EventController::class, 'completeDestroy'])
 			->name('events.completeDestroy');
-		Route::post('events/deleted/restore/{event}', [EventController::class, 'restore'])
+		Route::post('events/deleted/{event}', [EventController::class, 'restore'])
 			->name('events.restore');
 
 		Route::resource('events', EventController::class);
@@ -43,5 +46,20 @@ Route::prefix('manager')
 
 Route::middleware('can:user-higher')
 	->group(function () {
-		Route::get('index', fn () => dd('user'));
+		Route::get('/dashboard', [ReservationController::class, 'dashboard'])
+			->name('dashboard');
+		Route::get('/mypage', [MyPageController::class, 'index'])
+			->name('mypage.index');
+		Route::get('/mypage/{id}', [MyPageController::class, 'show'])
+			->name('mypage.show');
+		Route::post('/mypage/{id}', [MyPageController::class, 'cancel'])
+			->name('mypage.cancel');
+		// Route::get('/{id}', [ReservationController::class, 'detail'])
+		// 	->name('events.detail');
+		Route::post('/{id}', [ReservationController::class, 'reserve'])
+			->name('events.reserve');
 	});
+
+Route::middleware('auth')
+	->get('/{id}', [ReservationController::class, 'detail'])
+	->name('events.detail');

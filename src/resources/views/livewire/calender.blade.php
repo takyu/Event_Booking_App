@@ -22,15 +22,32 @@
               @php
                 $eventInfo = $events->firstWhere('start_date', $currentWeek[$i]['checkDay'] . ' ' . \EventConst::EVENT_TIME[$j]);
                 $eventName = $eventInfo->name;
+                $eventId = $eventInfo->id;
+                
+                $isfull = (int) $eventInfo->number_of_people === $eventInfo->max_people ? true : false;
                 
                 $eventPeriod = \Carbon\Carbon::parse($eventInfo->start_date)->diffInMinutes($eventInfo->end_date) / 30 - 1;
               @endphp
-              <div class="h-8 border border-gray-200 bg-blue-100 py-1 px-2">
-                {{ $eventName }}
-              </div>
+              <a href="{{ route('events.detail', [
+                  'id' => $eventId,
+              ]) }}">
+                @if ($isfull)
+                  <div class="mx-auto h-8 overflow-scroll border border-gray-200 bg-red-100 py-1 px-2">
+                    {{ $eventName }}
+                  </div>
+                @else
+                  <div class="h-8 overflow-scroll border border-gray-200 bg-blue-100 py-1 px-2">
+                    {{ $eventName }}
+                  </div>
+                @endif
+              </a>
               @if ($eventPeriod > 0)
                 @for ($k = 0; $k < $eventPeriod; $k++)
-                  <div class="h-8 border border-gray-200 bg-blue-100 py-1 px-2"></div>
+                  @if ($isfull)
+                    <div class="h-8 border border-gray-200 bg-red-100 py-1 px-2"></div>
+                  @else
+                    <div class="h-8 border border-gray-200 bg-blue-100 py-1 px-2"></div>
+                  @endif
                 @endfor
                 @php
                   $j += $eventPeriod;

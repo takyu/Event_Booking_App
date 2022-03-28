@@ -68,6 +68,14 @@ class Event extends Model
 		);
 	}
 
+	protected function dayBeforeEventDate(): Attribute
+	{
+		return new Attribute(
+			get: fn () => Carbon::parse($this->start_date)
+				->subDay()->format('Y年m月d日')
+		);
+	}
+
 	/**
 	 * Get the event's start time.
 	 *
