@@ -7,7 +7,7 @@
 
   <div class="py-8">
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-      <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
+      <div class="overflow-auto whitespace-nowrap bg-white shadow-xl sm:rounded-lg">
         <section class="body-font text-gray-600">
           <div class="container mx-auto px-4 py-8">
             @if (session('status'))

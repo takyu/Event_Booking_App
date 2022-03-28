@@ -998,6 +998,9 @@ select {
 .col-span-6 {
   grid-column: span 6 / span 6;
 }
+.col-auto {
+  grid-column: auto;
+}
 .m-10 {
   margin: 2.5rem;
 }
@@ -1329,6 +1332,9 @@ select {
 }
 .overflow-hidden {
   overflow: hidden;
+}
+.overflow-scroll {
+  overflow: scroll;
 }
 .overflow-y-auto {
   overflow-y: auto;
@@ -1744,6 +1750,10 @@ select {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
 }
+.text-rose-400 {
+  --tw-text-opacity: 1;
+  color: rgb(251 113 133 / var(--tw-text-opacity));
+}
 .text-gray-200 {
   --tw-text-opacity: 1;
   color: rgb(229 231 235 / var(--tw-text-opacity));
@@ -1752,9 +1762,9 @@ select {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
-.text-rose-400 {
+.text-red-300 {
   --tw-text-opacity: 1;
-  color: rgb(251 113 133 / var(--tw-text-opacity));
+  color: rgb(252 165 165 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;

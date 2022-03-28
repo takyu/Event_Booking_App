@@ -15,6 +15,13 @@
           <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
             イベントカレンダー
           </x-jet-nav-link>
+
+          @can('user-higher')
+            <x-jet-nav-link href="{{ route('mypage.index') }}" :active="request()->routeIs('mypage.index')">
+              マイページ
+            </x-jet-nav-link>
+          @endcan
+
           @can('manager-higher')
             <x-jet-nav-link href="{{ route('events.index') }}" :active="request()->routeIs('events.index')">
               現在のイベント一覧
@@ -26,6 +33,7 @@
               削除済みイベント一覧
             </x-jet-nav-link>
           @endcan
+
         </div>
       </div>
 
@@ -163,6 +171,11 @@
       <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
         イベントカレンダー
       </x-jet-responsive-nav-link>
+      @can('user-higher')
+        <x-jet-responsive-nav-link href="{{ route('mypage.index') }}" :active="request()->routeIs('mypage.index')">
+          マイページ
+        </x-jet-responsive-nav-link>
+      @endcan
       @can('manager-higher')
         <x-jet-responsive-nav-link href="{{ route('events.index') }}" :active="request()->routeIs('events.index')">
           現在のイベント一覧

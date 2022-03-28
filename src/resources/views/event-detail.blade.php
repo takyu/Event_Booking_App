@@ -61,6 +61,9 @@
               <div class="mt-4 items-center text-center">
                 @if ($reservablePeople <= 0)
                   <span class="text-sm text-rose-400">定員に達しました。</span>
+                @elseif(!empty($isReserved))
+                  <x-jet-label class="md:mb-2" for="reserved_people" value="自身の予約人数" />
+                  {{ $isReserved->number_of_people }}
                 @else
                   <x-jet-label class="md:mb-2" for="reserved_people" value="予約人数" />
                   <select name="reserved_people" id="">
@@ -70,18 +73,25 @@
                   </select>
                 @endif
               </div>
-              <input type="hidden" name="id" value="{{ $event->id }}">
-              @if ($reservablePeople <= 0)
-                <div class="mt-8 text-center md:text-left">
-                  <x-jet-button disabled>
-                    予約する
-                  </x-jet-button>
-                </div>
+              @if (empty($isReserved))
+                <input type="hidden" name="id" value="{{ $event->id }}">
+                @if ($reservablePeople <= 0)
+                  <div class="mt-8 text-center md:text-left">
+                    <x-jet-button disabled>
+                      予約する
+                    </x-jet-button>
+                  </div>
+                @else
+                  <div class="mt-8 text-center md:text-left">
+                    <x-jet-button>
+                      予約する
+                    </x-jet-button>
+                  </div>
+                @endif
               @else
-                <div class="mt-8 text-center md:text-left">
-                  <x-jet-button>
-                    予約する
-                  </x-jet-button>
+                <div class="mt-6 flex flex-col text-center md:mt-0">
+                  <span class="mb-2 text-xs text-red-500">このイベントは既に予約済みです。</span>
+                  <span class="text-xs">キャンセル、変更等はマイページにてお願いします。</span>
                 </div>
               @endif
             </div>

@@ -32,11 +32,11 @@
                   'id' => $eventId,
               ]) }}">
                 @if ($isfull)
-                  <div class="h-8 border border-gray-200 bg-red-100 py-1 px-2">
+                  <div class="mx-auto h-8 overflow-scroll border border-gray-200 bg-red-100 py-1 px-2">
                     {{ $eventName }}
                   </div>
                 @else
-                  <div class="h-8 border border-gray-200 bg-blue-100 py-1 px-2">
+                  <div class="h-8 overflow-scroll border border-gray-200 bg-blue-100 py-1 px-2">
                     {{ $eventName }}
                   </div>
                 @endif
